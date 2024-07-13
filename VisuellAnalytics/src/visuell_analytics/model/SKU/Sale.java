@@ -6,7 +6,7 @@ import visuell_analytics.model.util.Date;
  * One sale event, maintains date, quantity, price (and item?)
  */
 public class Sale {
-	private SKU item;
+	private Item item;
 	private Date date;
 	private int quantity;
 	private float price;
@@ -14,12 +14,12 @@ public class Sale {
 	private int saleAge;
 	private Sale current;
 
-	public Sale(SKU item, Date date, int quantity, float price) {
-		setItem(item);
-		setDate(date);
-		setQuantity(quantity);
-		setPrice(price);
-		this.gross = price * quantity;
+	public Sale(Item item, Date date, int quantity, float price) {
+//		setItem(item);
+//		setDate(date);
+//		setQuantity(quantity);
+//		setPrice(price);
+//		this.gross = price * quantity;
 		current = new Sale();
 		current.setItem(item);
 		current.setDate(date);
@@ -32,13 +32,13 @@ public class Sale {
 		
 	}
 
-	public void addToItem(SKU item) {
+	public void addToItem(Item item) {
 		item.addSale(this);
 	}
 	/**
 	 * @return the item
 	 */
-	public SKU getItem() {
+	public Item getItem() {
 		return item;
 	}
 
@@ -70,7 +70,7 @@ public class Sale {
 	/**
 	 * @param item the item to set
 	 */
-	private void setItem(SKU item) {
+	private void setItem(Item item) {
 		this.item = item;
 	}
 

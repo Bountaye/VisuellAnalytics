@@ -1,17 +1,14 @@
 package visuell_analytics.model.SKU;
 
-//TODO implement statsArray and refactor java stack to custom statsArray
-import java.util.Stack;
-
 import visuell_analytics.model.util.SalesList;
 
-public class SKU {
+public class Item {
 	private String id;
 	private int inventory;
-	private float sittingRate;
+	private float costPrice;
 	private SalesList<Sale> sales = new SalesList<Sale>();
 
-	public SKU(String id, int inventory, float sittingRate) {
+	public Item(String id, int inventory, float sittingRate) {
 		setId(id);
 		setInventory(inventory);
 		setRate(sittingRate);
@@ -34,14 +31,14 @@ public class SKU {
 	}
 
 	public float getRate() {
-		return sittingRate;
+		return costPrice;
 	}
 
 	public void setRate(float rate) {
-		sittingRate = rate;
+		costPrice = rate;
 	}
 
-	public boolean equals(SKU other) {
+	public boolean equals(Item other) {
 		return other.getId().equals(id);
 	}
 
