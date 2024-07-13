@@ -105,13 +105,6 @@ public class SalesList<E> {
 	}
 
 	/**
-	 * @return the size
-	 */
-	public int getSize() {
-		return size;
-	}
-
-	/**
 	 * @return the grossAvg
 	 */
 	public float getGrossAvg() {
@@ -144,5 +137,17 @@ public class SalesList<E> {
 	 */
 	public float getQuantityAvg() {
 		return quantityAvg;
+	}
+	
+	public Sale getLastSale() {
+		return list.get(size-1);
+	}
+	
+	public int getLastSaleAge() {
+		return list.get(size-1).getSaleAge();
+	}
+	
+	public Sale getSale(int idx) {
+		return list.get(idx);
 	}
 }

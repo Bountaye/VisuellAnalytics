@@ -3,11 +3,13 @@ package visuell_analytics.model.SKU;
 //TODO implement statsArray and refactor java stack to custom statsArray
 import java.util.Stack;
 
+import visuell_analytics.model.util.SalesList;
+
 public class SKU {
 	private String id;
 	private int inventory;
 	private float sittingRate;
-	private Stack<Sale> sales = new Stack<Sale>();
+	private SalesList<Sale> sales = new SalesList<Sale>();
 
 	public SKU(String id, int inventory, float sittingRate) {
 		setId(id);
@@ -44,11 +46,11 @@ public class SKU {
 	}
 
 	public void addSale(Sale sale) {
-		sales.push(sale);
+		sales.add(sale);
 	}
 	
 	public Sale getLastSale() {
-		return sales.peek();
+		return sales.getLastSale();
 	}
 	
 	/** TODO DECIDE FORMULA

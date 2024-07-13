@@ -6,13 +6,13 @@ import visuell_analytics.model.util.Date;
  * One sale event, maintains date, quantity, price (and item?)
  */
 public class Sale {
-	// TODO add sale to SKU when creating sale. does sale need an SKU field?
 	private SKU item;
 	private Date date;
 	private int quantity;
 	private float price;
 	private float gross;
 	private int saleAge;
+	private Sale current;
 
 	public Sale(SKU item, Date date, int quantity, float price) {
 		setItem(item);
@@ -20,8 +20,21 @@ public class Sale {
 		setQuantity(quantity);
 		setPrice(price);
 		this.gross = price * quantity;
+		current = new Sale();
+		current.setItem(item);
+		current.setDate(date);
+		current.setQuantity(quantity);
+		current.setPrice(price);
+		current.gross = price * quantity;
+		item.addSale(current);
+	}
+	public Sale() {
+		
 	}
 
+	public void addToItem(SKU item) {
+		item.addSale(this);
+	}
 	/**
 	 * @return the item
 	 */
