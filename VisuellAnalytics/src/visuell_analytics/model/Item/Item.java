@@ -1,4 +1,4 @@
-package visuell_analytics.model.SKU;
+package visuell_analytics.model.Item;
 
 import visuell_analytics.model.util.SalesList;
 

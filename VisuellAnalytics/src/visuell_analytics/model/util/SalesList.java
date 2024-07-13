@@ -1,8 +1,10 @@
 package visuell_analytics.model.util;
 
 import java.util.ArrayList;
+
+import visuell_analytics.model.Item.Sale;
+
 import java.lang.StrictMath;
-import visuell_analytics.model.SKU.Sale;
 
 /**
  * Maintains a list of sales, automatically sorted by date. Index 0 is the
