@@ -2,7 +2,7 @@ package visuell_analytics.model.util;
 
 import java.util.ArrayList;
 
-import visuell_analytics.model.Item.Sale;
+import visuell_analytics.model.item.Sale;
 
 import java.lang.StrictMath;
 
@@ -12,16 +12,16 @@ import java.lang.StrictMath;
  * 
  * @param <Sale>
  */
-public class SalesList<E> {
+public class SalesList {
 	/** The list that will stores the elements in array form */
 	private ArrayList<Sale> list;
 	/** The size of the list */
-	private int size;
 	private float grossAvg;
 	private float timeAvg;
 	private float priceAvg;
 	private float priceStDev;
 	private float quantityAvg;
+	private float revenuePerMonthAvg;
 
 	/**
 	 * The constructor for the array based stack
@@ -30,7 +30,6 @@ public class SalesList<E> {
 	 */
 	public SalesList() {
 		list = new ArrayList<Sale>();
-		size = 0;
 	}
 
 	/**
@@ -39,29 +38,27 @@ public class SalesList<E> {
 	 * @param sale
 	 */
 	public void add(Sale sale) {
-		if (size == 0) {
+		if (list.size() == 0) {
 			list.add(sale);
-			size++;
 			return;
 		}
-		for (int i = size - 1; i >= 0; i--) {
+		for (int i = list.size() - 1; i >= 0; i--) {
 			if (sale.isAfter(list.get(i))) {
 				list.add(i + 1, sale);
-				size++;
 				return;
 			}
 		}
 		list.add(0, sale);
 	}
 
-	public void calculate(int days) {
+	public void calculate() {
 		// Initializing fields
 		grossAvg = 0;
 		priceAvg = 0;
 		priceStDev = 0;
 		quantityAvg = 0;
 		timeAvg = 0;
-		for (int i = 0; i < size - 1; i++) {
+		for (int i = 0; i < list.size() - 1; i++) {
 			// Adding values to variables
 			grossAvg += list.get(i).getGross();
 			priceAvg += list.get(i).getPrice();
@@ -70,17 +67,18 @@ public class SalesList<E> {
 			timeAvg += (list.get(i).getSaleAge() - list.get(i + 1).getSaleAge());
 		}
 		// Adding last value and averaging variables
-		grossAvg = (grossAvg + list.get(size - 1).getGross()) / size;
-		priceAvg = (priceAvg + list.get(size - 1).getPrice()) / size;
-		quantityAvg = (quantityAvg + list.get(size - 1).getQuantity()) / size;
+		grossAvg = (grossAvg + list.get(list.size() - 1).getPrice()) / list.size();
+		quantityAvg = (quantityAvg + list.get(list.size() - 1).getQuantity()) / list.size();
 		// Averaging time
-		timeAvg = timeAvg / (size - 1);
+		timeAvg = timeAvg / (list.size() - 1);
 		// Adding squares of differences for priceStDev
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < list.size(); i++) {
 			priceStDev += square(list.get(i).getPrice() - priceAvg);
 		}
 		// Dividing by number and squarerooting for priceStDev
-		priceStDev = (float) StrictMath.sqrt(priceStDev / size);
+		priceStDev = (float) StrictMath.sqrt(priceStDev / list.size());
+		// Multiplying gross avg into sales per month
+		revenuePerMonthAvg = (float) (grossAvg * 30.5/timeAvg);
 	}
 
 	private float square(float input) {
@@ -93,7 +91,7 @@ public class SalesList<E> {
 	 * @return the boolean answer of whether the list is empty or not
 	 */
 	public boolean isEmpty() {
-		return size == 0;
+		return list.size() == 0;
 	}
 
 	/**
@@ -103,7 +101,7 @@ public class SalesList<E> {
 	 * @return the total number of elements in the list
 	 */
 	public int size() {
-		return size;
+		return list.size();
 	}
 
 	/**
@@ -142,14 +140,18 @@ public class SalesList<E> {
 	}
 	
 	public Sale getLastSale() {
-		return list.get(size-1);
+		return list.get(list.size()-1);
 	}
 	
 	public int getLastSaleAge() {
-		return list.get(size-1).getSaleAge();
+		return list.get(list.size()-1).getSaleAge();
 	}
 	
 	public Sale getSale(int idx) {
 		return list.get(idx);
+	}
+
+	public float getRevenuePerMonthAvg() {
+		return revenuePerMonthAvg;
 	}
 }
