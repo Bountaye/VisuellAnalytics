@@ -33,9 +33,9 @@ public class Sale {
 	}
 
 	//TODO is this needed?
-	public void addToItem(Item item) {
-		item.addSale(this);
-	}
+//	public void addToItem(Item item) {
+//		item.addSale(this);
+//	}
 	
 	/**
 	 * @return the item

@@ -23,11 +23,6 @@ public class SalesList {
 	private float quantityAvg;
 	private float revenuePerMonthAvg;
 
-	/**
-	 * The constructor for the array based stack
-	 * 
-	 * @param capacity the numerical cap on the number of elements in the list
-	 */
 	public SalesList() {
 		list = new ArrayList<Sale>();
 	}

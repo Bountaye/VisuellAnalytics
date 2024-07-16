@@ -3,6 +3,10 @@ package visuell_analytics.model.item;
 import visuell_analytics.model.util.SalesList;
 
 public class Item {
+	// TODO implement function that takes in a percent for the cost price to be and
+	// returns the probability the item will sell given the cost price needs to be
+	// that percentage of the sale based on price average and standard deviation
+	// from saleslist using apache normal distribution function
 	private String id;
 	private int inventory;
 	private float costPrice;
@@ -50,7 +54,7 @@ public class Item {
 	public Sale getLastSale() {
 		return sales.getLastSale();
 	}
-	
+
 	public float getAvgMonthlyRevenue() {
 		return sales.getRevenuePerMonthAvg();
 	}
