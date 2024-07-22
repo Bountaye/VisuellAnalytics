@@ -2,7 +2,6 @@ package visuell_analytics.model.io;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Iterator;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
