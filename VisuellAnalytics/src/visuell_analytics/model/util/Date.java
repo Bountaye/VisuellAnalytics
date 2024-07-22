@@ -1,8 +1,7 @@
 package visuell_analytics.model.util;
 
 /**
- * Keeps track of date in 3 integers dd/mm/yyyy
- * keeps track of days since date
+ * Keeps track of date in 3 integers dd/mm/yyyy keeps track of days since date
  * really a POJO for the most part
  */
 public class Date {
@@ -10,17 +9,33 @@ public class Date {
 	private int day;
 	private int month;
 	private int year;
-	/** Number of days since this date*/
+	/** Number of days since this date */
 	private int daysSince;
 	/** Days passed since 1st jan 2015 */
 	private static final int today = (int) (System.currentTimeMillis() / 86400000 - 16436);
-	private static final int[] months = {31,28,31,30,31,30,31,31,30,31,30,31};
+	private static final int[] months = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	private static final String[] monthsString = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
+			"Nov", "Dec" };
 
 	public Date(int day, int month, int year) {
 		setDay(day);
 		setMonth(month);
 		setYear(year);
 		setDaysSince(day, month, year);
+	}
+
+	public Date(int day, String month, int year) {
+		setDay(day);
+		int mon = 0;
+		for (int i = 0; i < 12; i++) {
+			if (month.equals(monthsString[i])) {
+				mon = i + 1;
+				break;
+			}
+		}
+		setMonth(mon);
+		setYear(year);
+		setDaysSince(day, mon, year);
 	}
 
 	/**
@@ -76,20 +91,20 @@ public class Date {
 	 * @param daysSince the daysSince to set
 	 */
 	private void setDaysSince(int day, int month, int year) {
-		int tempYear = year-2015;
-		int leapDays = tempYear/4;
-		int totalDays = tempYear*365 + monthsToDays(month) + day + leapDays;
+		int tempYear = year - 2015;
+		int leapDays = tempYear / 4;
+		int totalDays = tempYear * 365 + monthsToDays(month) + day + leapDays;
 		this.daysSince = today - totalDays;
 	}
 
 	private int monthsToDays(int month) {
 		int val = 0;
 		for (int i = 1; i < month; i++) {
-			val+= months[i];
+			val += months[i];
 		}
 		return val;
 	}
-	
+
 	public boolean isAfter(Date other) {
 		return daysSince < other.getDaysSince();
 	}

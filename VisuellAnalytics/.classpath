@@ -6,30 +6,10 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/nisha/git/VisuellAnalytics/VisuellAnalytics/lib/commons-collections4-4.1.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/nisha/git/VisuellAnalytics/VisuellAnalytics/lib/poi-3.17.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/nisha/git/VisuellAnalytics/VisuellAnalytics/lib/poi-ooxml-3.17.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/nisha/git/VisuellAnalytics/VisuellAnalytics/lib/poi-ooxml-schemas-3.17.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/nisha/git/VisuellAnalytics/VisuellAnalytics/lib/xmlbeans-2.6.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/nisha/git/VisuellAnalytics/VisuellAnalytics/lib/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nisha/git/VisuellAnalytics/VisuellAnalytics/lib/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nisha/git/VisuellAnalytics/VisuellAnalytics/lib/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nisha/git/VisuellAnalytics/VisuellAnalytics/lib/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nisha/git/VisuellAnalytics/VisuellAnalytics/lib/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

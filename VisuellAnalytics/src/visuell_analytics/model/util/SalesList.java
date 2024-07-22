@@ -22,6 +22,7 @@ public class SalesList {
 	private float priceStDev;
 	private float quantityAvg;
 	private float revenuePerMonthAvg;
+	private float quantityPerMonthAvg;
 
 	public SalesList() {
 		list = new ArrayList<Sale>();
@@ -74,6 +75,8 @@ public class SalesList {
 		priceStDev = (float) StrictMath.sqrt(priceStDev / list.size());
 		// Multiplying gross avg into sales per month
 		revenuePerMonthAvg = (float) (grossAvg * 30.5/timeAvg);
+		// Multiplying quantity avg into sales per month
+		quantityPerMonthAvg = (float) (quantityAvg * 30.5/timeAvg);
 	}
 
 	private float square(float input) {
@@ -148,5 +151,9 @@ public class SalesList {
 
 	public float getRevenuePerMonthAvg() {
 		return revenuePerMonthAvg;
+	}
+
+	public float getQuantityPerMonthAvg() {
+		return quantityPerMonthAvg;
 	}
 }

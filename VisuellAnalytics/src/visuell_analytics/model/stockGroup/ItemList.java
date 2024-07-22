@@ -8,12 +8,15 @@ import visuell_analytics.model.item.Sale;
 import visuell_analytics.model.util.SortById;
 import visuell_analytics.model.util.SortByDeathIndex;
 import visuell_analytics.model.util.SortByAvgMonthlyRevenue;
+import visuell_analytics.model.util.SortByAvgMonthlyQuantity;
 import visuell_analytics.model.util.SortByInventory;
+import visuell_analytics.model.util.SortByLastSale;
+import visuell_analytics.model.util.SortByPrice;
 
 /**
  * Master list of all items
- * Maintains item in alphabetical order
  */
+// TODO Make iterable, implement in writer
 public class ItemList {
 	private ArrayList<Item> list;
 	
@@ -39,6 +42,14 @@ public class ItemList {
 		}
 	}
 	
+	public Item getItem(int idx) {
+		return list.get(idx);
+	}
+	
+	public int size() {
+		return list.size();
+	}
+	
 	public void sortById() {
 		Collections.sort(list, new SortById());
 	}
@@ -53,5 +64,17 @@ public class ItemList {
 	
 	public void sortByInventory() {
 		Collections.sort(list, new SortByInventory());
+	}
+	
+	public void sortByAvgMonthlyQuantity() {
+		Collections.sort(list, new SortByAvgMonthlyQuantity());
+	}
+	
+	public void sortByLastSale() {
+		Collections.sort(list, new SortByLastSale());
+	}
+	
+	public void sortByPrice() {
+		Collections.sort(list, new SortByPrice());
 	}
 }

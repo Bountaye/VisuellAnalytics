@@ -28,11 +28,10 @@ public class Sale {
 //		current.gross = price * quantity;
 //		item.addSale(current);
 	}
-	public Sale() {
-		
-	}
+//	public Sale() {
+//		
+//	}
 
-	//TODO is this needed?
 //	public void addToItem(Item item) {
 //		item.addSale(this);
 //	}
