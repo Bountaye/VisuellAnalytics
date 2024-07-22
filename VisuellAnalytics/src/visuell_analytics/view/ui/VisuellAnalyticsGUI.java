@@ -6,7 +6,7 @@ import visuell_analytics.model.stockGroup.ItemList;
 
 public class VisuellAnalyticsGUI {
 
-	private static void main(String[] args) {
+	public static void main(String[] args) {
 		ItemList all = DataReader
 				.readStkGrpSum("C:\\Users\\nisha\\git\\VisuellAnalytics\\VisuellAnalytics\\data\\StkGrpSum.xlsx");
 		all = DataReader.readDayBook("C:\\Users\\nisha\\git\\VisuellAnalytics\\VisuellAnalytics\\data\\DayBook.xlsx",

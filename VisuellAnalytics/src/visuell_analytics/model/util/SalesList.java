@@ -54,6 +54,9 @@ public class SalesList {
 		priceStDev = 0;
 		quantityAvg = 0;
 		timeAvg = 0;
+		if(list.size() == 0) {
+			return;
+		}
 		for (int i = 0; i < list.size() - 1; i++) {
 			// Adding values to variables
 			grossAvg += list.get(i).getGross();

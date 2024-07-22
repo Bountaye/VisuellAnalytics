@@ -17,6 +17,7 @@ import visuell_analytics.model.util.Date;
 public class DataReader {
 
 	public static ItemList readStkGrpSum(String filename) {
+		//TODO exit at grand total
 		ItemList all = new ItemList();
 
 		// Try block to check for exceptions
@@ -51,7 +52,8 @@ public class DataReader {
 				Iterator<Cell> cellIterator = row.cellIterator();
 
 				String itemId = cellIterator.next().getStringCellValue();
-				int itemQuantity = Integer.parseInt(cellIterator.next().getStringCellValue().split(" ")[0]);
+//				int itemQuantity = Integer.parseInt(cellIterator.next().getStringCellValue().split(" ")[0]);
+				int itemQuantity = (int) cellIterator.next().getNumericCellValue();
 				float itemRate = (float) cellIterator.next().getNumericCellValue();
 				all.addItem(new Item(itemId, itemQuantity, itemRate));
 				System.out.println("Read stock item: " + itemId);
@@ -73,6 +75,7 @@ public class DataReader {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public static ItemList readDayBook(String filename, ItemList all) {
 
 		try {
@@ -92,26 +95,32 @@ public class DataReader {
 			for (int i = 0; i < 9; i++) {
 				rowIterator.next();
 			}
-
+			Date date = null;
 			// Till there is an element condition holds true
 			while (rowIterator.hasNext()) {
 				Row row = rowIterator.next();
 				Iterator<Cell> cellIterator = row.cellIterator();
-				Date date = null;
-				String maybeDate = cellIterator.next().getStringCellValue();
+				Cell firstColumn = cellIterator.next();
+				String maybeDate = firstColumn.toString();
+				System.out.println(maybeDate);
 				// If line contains date, it doesn't hold sale information. if it doesn't then
 				// sale must be recorded using declared date.
 				if (maybeDate.length() > 0) {
 					String[] dateArray = maybeDate.split("-");
+					for(int i = 0; i < dateArray.length; i++) {
+						System.out.println(dateArray[i]);
+					}
 					date = new Date(Integer.parseInt(dateArray[0]), dateArray[1], Integer.parseInt(dateArray[2]));
 				} else {
 					String saleId = cellIterator.next().getStringCellValue();
 					cellIterator.next();
 					cellIterator.next();
 					cellIterator.next();
-					int saleQuantity = Integer.parseInt(cellIterator.next().getStringCellValue().split(" ")[0]);
+//					int saleQuantity = Integer.parseInt(cellIterator.next().getStringCellValue().split(" ")[0]);
+					int saleQuantity = (int) cellIterator.next().getNumericCellValue();
 					float saleRate = (float) cellIterator.next().getNumericCellValue() / saleQuantity;
 					all.addSale(new Sale(saleId, date, saleQuantity, saleRate));
+					System.out.println("Read Sale: " + saleId);
 				}
 
 			}
